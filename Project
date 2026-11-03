@@ -1,0 +1,55 @@
+
+#include <stdio.h>
+#include <string.h>
+
+struct Item {
+    char name[50];
+    char location[50];
+    char status[20];
+};
+
+int main() {
+    struct Item item[50];
+    int choice, count = 0, i;
+
+    while (1) {
+        printf("\n--- COLLEGE LOST AND FOUND SYSTEM ---\n");
+        printf("1. Report Lost Item\n");
+        printf("2. Report Found Item\n");
+        printf("3. View All Items\n");
+        printf("4. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        if (choice == 4)
+            break;
+
+        if (choice == 1 || choice == 2) {
+            printf("Enter item name: ");
+            scanf(" %49[^\n]", item[count].name);
+
+            printf("Enter location: ");
+            scanf(" %49[^\n]", item[count].location);
+
+            if (choice == 1)
+                strcpy(item[count].status, "Lost");
+            else
+                strcpy(item[count].status, "Found");
+
+            count++;
+            printf("Item reported successfully!\n");
+        }
+        else if (choice == 3) {
+            printf("\n--- ITEM RECORDS ---\n");
+            for (i = 0; i < count; i++) {
+                printf("\nItem: %s", item[i].name);
+                printf("\nLocation: %s", item[i].location);
+                printf("\nStatus: %s\n", item[i].status);
+            }
+        }
+        else
+            printf("Invalid choice!\n");
+    }
+
+    return 0;
+}
